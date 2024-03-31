@@ -34,7 +34,7 @@ import QRCode from "react-qr-code";
 
 
 //const socket=io.connect("chatrmn.eu-4.evennode.com")
-const socket=io.connect("http://localhost:8003")
+
 
 function App() {
   const navigate = useNavigate();
@@ -402,11 +402,11 @@ console.log(Img)
 
   
     
-      <Routes>
-            <Route path="/" element={<SideBarH otp={handleO} fbb={fb} Img={Img} sifun={handleSignIn} sufun={handleSignUp} load={load} log={Log}/>} />
-        <Route path="/dashboard" element={<SideBar fbb={fb} Img={Img} sifun={handleSignIn} sufun={handleSignUp} load={load} log={Log}/>} />
+    <Routes>
+     <Route path="/" element={<SideBarH otp={handleO} fbb={fb} Img={Img} sifun={handleSignIn} sufun={handleSignUp} load={load} log={Log}/>} />
+<Route path="/dashboard" element={<SideBar fbb={fb} Img={Img} sifun={handleSignIn} sufun={handleSignUp} load={load} log={Log}/>} />
 
-      </Routes><button>
+</Routes><button>
 {Object.keys(Img).length===0 &&<LoginSocialFacebook
      appId="1832325630476306"
      onResolve={fb}
