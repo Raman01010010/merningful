@@ -1,14 +1,7 @@
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
 import React from 'react'
 import {posts} from "../service/api"
 import {getPosts} from "../service/api"
 import Load from './Load';
-import Post from './Post'
 import Commnet from './Comment'
 import { addLike } from '../service/api';
 import { isLiked } from '../service/api';
