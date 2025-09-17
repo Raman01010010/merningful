@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {addUser} from '../service/api'
 
 export default function SignU(props) {
  const [user,setUser]=React.useState({})

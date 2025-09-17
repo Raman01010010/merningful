@@ -3,10 +3,8 @@ import React, { useCallback } from "react"
 import ReactDOM from 'react-dom/client';
 import Message from './Message'
 import Load from './Load'
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import { searchUser } from '../service/api'

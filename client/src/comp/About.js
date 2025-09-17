@@ -23,7 +23,7 @@
               <a href="https://www.instagram.com/RAMAN010100L0/">Instagram</a>
             </h1>
             <h1 className="display-5">
-              <a href="#">RMNPRJRRR@GMAIL.COM </a>
+              <button type="button" className="btn-link" style={{border: 'none', background: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', fontSize: 'inherit'}}>RMNPRJRRR@GMAIL.COM </button>
             </h1>
           </div>
         </div>
@@ -56,7 +56,7 @@
           <div className="card">
             <div className="card-body">
               <div className="row">
-                <img width="90%" src="./mern.jpg" />
+                <img width="90%" src="./mern.jpg" alt="MERN Stack technology illustration" />
                 <div className="col-md-4 d-flex align-items-center">
                   <div className="d-flex flex-row align-items-center">
                     <i className="mdi mdi-compass icon-sm text-danger" />
@@ -79,7 +79,7 @@
               <a href="https://github.com/Vivek9744">Git Hub </a>
             </h1>
             <h1 className="display-5">
-              <a href="#">vivek.20223317@mnnit.ac.in </a>
+              <button type="button" className="btn-link" style={{border: 'none', background: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', fontSize: 'inherit'}}>vivek.20223317@mnnit.ac.in </button>
             </h1>
           </div>
         </div>
@@ -134,7 +134,7 @@
               <a href="https://github.com/Radha-Krishn">Git Hub </a>
             </h1>
             <h1 className="display-5">
-              <a href="#">sanskar.20223233@mnnit.ac.in </a>
+              <button type="button" className="btn-link" style={{border: 'none', background: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', fontSize: 'inherit'}}>sanskar.20223233@mnnit.ac.in </button>
             </h1>
           </div>
         </div>
@@ -197,7 +197,7 @@
               <a href="https://www.instagram.com/RAMAN010100L0/">Instagram</a>
             </h1>
             <h1 className="display-5">
-              <a href="#">priyanshu.20223191@mnnit.ac.in </a>
+              <button type="button" className="btn-link" style={{border: 'none', background: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', fontSize: 'inherit'}}>priyanshu.20223191@mnnit.ac.in </button>
             </h1>
           </div>
         </div>
@@ -226,7 +226,7 @@
           <div className="card">
             <div className="card-body">
               <div className="row">
-                <img width="90%" src="./mern.jpg" />
+                <img width="90%" src="./mern.jpg" alt="MERN Stack technology illustration" />
                 <div className="col-md-4 d-flex align-items-center">
                   <div className="d-flex flex-row align-items-center">
                     <i className="mdi mdi-compass icon-sm text-danger" />
