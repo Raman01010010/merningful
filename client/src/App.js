@@ -1,33 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
-import io from 'socket.io-client'
 import React, { useCallback } from "react"
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import NavBar from './NavBar'
-import SideBar from './comp/SideBar'
-import SideBar1 from './comp/SideBar1'
 import jwt_decode from 'jwt-decode'
 
 import {addUser} from "./service/api"
 import {addUser2} from "./service/api"
 import {addUser3} from "./service/api"
 import {isUser} from "./service/api"
-import SignU from './comp/SignU'
 import ReactDOM from 'react-dom/client';
 import Load from'./comp/Load'
 import Feed from './comp/Feed'
 import Post from './comp/Post'
-import {Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SideBarH from './comp/SidebarH'
+import SideBar from './comp/SideBar'
 import {LoginSocialFacebook} from 'reactjs-social-login'
 import {FacebookLoginButton} from 'react-social-login-buttons'
 import Otp from './comp/Otp'
-
-
-import QRCode from "react-qr-code";
 
 //const socket=io.connect("http://172.31.139.237:3001/")
 //const socket=io.connect("https://mern1-8ka4.onrender.com/")
@@ -40,11 +29,24 @@ function App() {
   const navigate = useNavigate();
   const [load,setLoad]=React.useState("0")
   
-  var userObject
   const [Img,setImg]=React.useState({})
-  async function handleCallbackResponse(response){
+  
+  const handleSeeMore = useCallback((event) => {
+   console.log("djdhh")
+    const root = ReactDOM.createRoot(
+      document.getElementById('main')
+    );
+    console.log(Img)
+    root.render(
+      <>
+      <Post user={Img} data={event}/>
+      </>
+    );
+  }, [Img])
+  
+  const handleCallbackResponse = useCallback(async (response) => {
 console.log(response.credential)
-userObject=jwt_decode(response.credential)
+var userObject=jwt_decode(response.credential)
 console.log(userObject)
 setImg(userObject)
 
@@ -85,7 +87,7 @@ root.render(
   <Feed see={handleSeeMore} props={Img}/>
   </>
 );
-  }
+  }, [navigate, Img, handleSeeMore])
   React.useEffect(()=>{
     /*global google*/
     google.accounts.id.initialize({
@@ -99,7 +101,7 @@ root.render(
         theme:"outline",size:"large"
       }
     );
-  },[])
+  },[handleCallbackResponse])
   function Log(){
       setImg({})
 
@@ -277,10 +279,6 @@ async function handleO(user){
 
 
 }
-function hand(){
- 
-  console.log(load)
-}
 async function handleSignIn(user){
 
   const root = ReactDOM.createRoot(
@@ -343,20 +341,6 @@ async function handleSignIn(user){
   
   
 }
-function handleSeeMore(event){
-   console.log("djdhh")
-    const root = ReactDOM.createRoot(
-      document.getElementById('main')
-    );
-    console.log(Img)
-    root.render(
-      <>
-      <Post user={Img} data={event}/>
-      </>
-    );
-    
-  
-  }
 const fb=async(response)=>{
   console.log(response);
   setImg({

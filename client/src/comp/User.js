@@ -1,5 +1,5 @@
 import { getUsers } from "../service/api"
-import React from "react"
+import React, { useCallback } from "react"
 import ReactDOM from 'react-dom/client';
 import Message from './Message'
 import Load from './Load'
@@ -11,14 +11,10 @@ import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import { searchUser } from '../service/api'
 import Profile from "./Profile";
-import userlogo from '../user.png'
 export default function User(props) {
   const [users, setUsers] = React.useState([])
-  React.useEffect(() => {
-    getAllUsers()
-  }, [])
-
-  const getAllUsers = async () => {
+  
+  const getAllUsers = useCallback(async () => {
     const root = ReactDOM.createRoot(
       document.getElementById('load')
     );
@@ -36,8 +32,11 @@ export default function User(props) {
       </>
     );
     console.log(response)
-    console.log(users)
-  }
+  }, [])
+  
+  React.useEffect(() => {
+    getAllUsers()
+  }, [getAllUsers])
   function handleMessage(event) {
     const root = ReactDOM.createRoot(
       document.getElementById('main')
