@@ -1,33 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import io from 'socket.io-client'
-import React, { useCallback } from "react"
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import NavBar from './NavBar'
-import SideBar from './comp/SideBar'
-import SideBar1 from './comp/SideBar1'
-import jwt_decode from 'jwt-decode'
-
-import {addUser} from "./service/api"
-import {addUser2} from "./service/api"
-import {addUser3} from "./service/api"
-import {isUser} from "./service/api"
-import SignU from './comp/SignU'
+import React, { useCallback } from 'react';
+import SideBar from './comp/SideBar';
+import jwt_decode from 'jwt-decode';
+import { addUser, addUser2, addUser3, isUser } from './service/api';
 import ReactDOM from 'react-dom/client';
-import Load from'./comp/Load'
-import Feed from './comp/Feed'
-import Post from './comp/Post'
-import {Router, Route, Routes } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import SideBarH from './comp/SidebarH'
-import {LoginSocialFacebook} from 'reactjs-social-login'
-import {FacebookLoginButton} from 'react-social-login-buttons'
-import Otp from './comp/Otp'
-
-
-import QRCode from "react-qr-code";
+import Load from './comp/Load';
+import Post from './comp/Post';
+import { Route, Routes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import SideBarH from './comp/SidebarH';
+import { LoginSocialFacebook } from 'reactjs-social-login';
+import { FacebookLoginButton } from 'react-social-login-buttons';
+import Otp from './comp/Otp';
 
 //const socket=io.connect("http://172.31.139.237:3001/")
 //const socket=io.connect("https://mern1-8ka4.onrender.com/")
@@ -38,17 +22,12 @@ import QRCode from "react-qr-code";
 
 function App() {
   const navigate = useNavigate();
-  const [load,setLoad]=React.useState("0")
-  
-  var userObject
-  const [Img,setImg]=React.useState({})
-  async function handleCallbackResponse(response){
-console.log(response.credential)
-userObject=jwt_decode(response.credential)
-console.log(userObject)
-setImg(userObject)
-
-navigate("/dashboard")
+  const [Img, setImg] = React.useState({});
+  const handleCallbackResponse = useCallback(async (response) => {
+    const userObject = jwt_decode(response.credential);
+    setImg(userObject);
+    navigate("/dashboard");
+  }, [navigate]);
 
 
 
@@ -86,20 +65,20 @@ root.render(
   </>
 );
   }
-  React.useEffect(()=>{
+  React.useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
-      client_id:"305937744211-8v5vok62adns8jiok8dcrqltdmlhoqkl.apps.googleusercontent.com",
-      callback:handleCallbackResponse
-    
-    })
+      client_id: "305937744211-8v5vok62adns8jiok8dcrqltdmlhoqkl.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
     google.accounts.id.renderButton(
       document.getElementById('sign1'),
       {
-        theme:"outline",size:"large"
+        theme: "outline", 
+        size: "large"
       }
     );
-  },[])
+  }, [handleCallbackResponse]);
   function Log(){
       setImg({})
 

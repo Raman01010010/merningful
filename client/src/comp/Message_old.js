@@ -1,3 +1,4 @@
+
 import io from 'socket.io-client';
 import React from 'react';
 import TextField from '@mui/material/TextField';
@@ -85,78 +86,101 @@ export default function Message(props) {
     socket.emit("send_message", "");
   };
 
-  const renderMessage = (item, index) => {
-    const isOwnMessage = item.from === props.from;
-    const messageClass = isOwnMessage 
-      ? "flex justify-end mb-4" 
-      : "flex justify-start mb-4";
-    const bubbleClass = isOwnMessage
-      ? "mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-      : "ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white";
-
+  function Chat() {
     return (
-      <div key={index} className={messageClass}>
-        <div className={bubbleClass}>
-          {item.content}
-        </div>
-      </div>
-    );
-  };
+      <div>
 
-  const ChatWindow = () => (
-    <div>
-      <div className="container mx-auto shadow-lg rounded-lg">
-        <div className="flex flex-row justify-between bg-white">
-          <div className="flex flex-col w-2/5 border-r-2 overflow-y-auto">
-            {/* User list could go here */}
-          </div>
-          <div className="w-full px-5 flex flex-col justify-between">
-            <div className="flex flex-col mt-5">
-              <div id="load"></div>
-              <div>
-                {messages.map(renderMessage)}
+        <div class="container mx-auto shadow-lg rounded-lg">
+
+
+
+          <div class="flex flex-row justify-between bg-white">
+
+            <div class="flex flex-col w-2/5 border-r-2 overflow-y-auto">
+
+
+
+
+
+            </div>
+
+            <div class="w-full px-5 flex flex-col justify-between">
+              <div class="flex flex-col mt-5">
+
+
+
+                <div id="load"></div>
+                {<h1>{m.map(item => {
+                  if (item.from !== props.from) {
+                    return (
+
+                      <div class="flex justify-start mb-4">
+                        
+                        <div
+                          class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
+                        >
+                          {item.content}
+                        </div>
+
+                      </div>
+                    )
+                  }
+                  else {
+                    return (
+                      <>
+                        <div class="flex justify-end mb-4">
+                          <div
+                            class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                          >
+                            {item.content}
+                          </div>
+                    
+                        </div>
+                      </>
+                    )
+                  }
+                })}</h1>}
+
+
+
+
+
+              </div>
+
+            </div>
+
+            <div class="w-2/5 border-l-2 px-5">
+              <div class="flex flex-col">
+
               </div>
             </div>
           </div>
-          <div className="w-2/5 border-l-2 px-5">
-            <div className="flex flex-col">
-              {/* Additional content could go here */}
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
+      </div>)
 
+  }
   return (
     <div className="App">
-      <br />
-      <br />
+
+      <br></br>
+      <br></br>
       <div className="blockquote blockquote-primary" style={{ display: "flex", background: "#ffffff" }}>
-        <TextField 
-          style={{ marginLeft: "20%" }} 
-          id="outlined-basic" 
-          value={currentMessage}
-          onChange={handleMessageChange} 
-          label="Enter Message" 
-          variant="outlined" 
-        />
-        <Button 
-          style={{ marginLeft: "20%" }} 
-          onClick={sendMessage} 
-          variant="contained"
-        >
-          Send Now
-        </Button>
+        <TextField style={{ marginLeft: "20%" }} id="outlined-basic" name="t1" onChange={sendMessage} label="Enter Message" variant="outlined" />
+        <br></br>
+        <Button style={{ marginLeft: "20%" }} onClick={sendM} variant="contained">Send Now</Button>
       </div>
       <div>
-        <br />
-        {typingIndicator && <h1>{typingIndicator}</h1>}
+        <br></br>
+        {<h1>{mess}</h1>}
       </div>
       <div>
-        Messages<br />
+        Messages<br></br>
+
       </div>
-      <ChatWindow />
+      <Chat />
+
     </div>
   );
 }
+
+
