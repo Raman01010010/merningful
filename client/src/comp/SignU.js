@@ -1,19 +1,7 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {addUser} from '../service/api'
-import ReactDOM from 'react-dom/client';
+import { addUser } from '../service/api';
 
 function Copyright(props) {
   return (
@@ -28,50 +16,38 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
-
 export default function SignU(props) {
- const [user,setUser]=React.useState({})
-function handleChange(event){
-    setUser(old=>{
-        return(
-            {
-                ...old,
-                [event.target.id]:event.target.value,
-
-            }
-        )
-    })
-    console.log(user)
-
-}
-function    Log(){
-    console.log("Logout")
-}
-async function handleClick(){
-    const k={
-        "token":user.token,
-      "given_name":user.given_name,
-      "family_name":user.family_name,
-      
-      "name":`${user.given_name}${user.family_name}`,
-      "email":user.email,
-      "picture":"https://images.pexels.com/photos/360591/pexels-photo-360591.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      
-      }
-      console.log(k)
-      console.log(await addUser())
-     const code= await addUser(k)
+  const [user, setUser] = React.useState({});
   
-     if(Object.keys(code.response.data).length===0){
-        console.log("submitted")
-       
-      
-       
-     }else
-    console.log("not Submitted")
-}
-console.log(props.props)
+  function handleChange(event) {
+    setUser(old => ({
+      ...old,
+      [event.target.id]: event.target.value,
+    }));
+  }
+
+  async function handleSignUp() {
+    const userData = {
+      "token": user.token,
+      "given_name": user.given_name,
+      "family_name": user.family_name,
+      "name": `${user.given_name}${user.family_name}`,
+      "email": user.email,
+      "picture": "https://images.pexels.com/photos/360591/pexels-photo-360591.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    };
+    
+    try {
+      const code = await addUser(userData);
+      if (Object.keys(code.response.data).length === 0) {
+        console.log("submitted");
+      } else {
+        console.log("not Submitted");
+      }
+    } catch (error) {
+      console.error("Signup failed:", error);
+    }
+  }
+
   return (
     <div className="container-scroller">
     <div className="container-fluid page-body-wrapper full-page-wrapper">

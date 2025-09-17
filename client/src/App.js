@@ -12,6 +12,7 @@ import SideBarH from './comp/SidebarH';
 import { LoginSocialFacebook } from 'reactjs-social-login';
 import { FacebookLoginButton } from 'react-social-login-buttons';
 import Otp from './comp/Otp';
+import Feed from './comp/Feed';
 
 //const socket=io.connect("http://172.31.139.237:3001/")
 //const socket=io.connect("https://mern1-8ka4.onrender.com/")
@@ -22,6 +23,7 @@ import Otp from './comp/Otp';
 
 function App() {
   const navigate = useNavigate();
+  const [load, setLoad] = React.useState("0");
   const [Img, setImg] = React.useState({});
   const handleCallbackResponse = useCallback(async (response) => {
     const userObject = jwt_decode(response.credential);
@@ -29,42 +31,6 @@ function App() {
     navigate("/dashboard");
   }, [navigate]);
 
-
-
-
-document.getElementById("hide").hidden=true;
-console.log(Img.aud)
-const k={
-  "token":Img.aud,
-"given_name":Img.given_name,
-"family_name":Img.family_name,
-
-"name":Img.name,
-"email":Img.email,
-"picture":Img.picture,
-
-}
-console.log(k)
-await addUser3({
-  "token":userObject.aud,
-"given_name":userObject.given_name,
-"family_name":userObject.family_name,
-
-"name":userObject.name,
-"email":userObject.email,
-"picture":userObject.picture,
-
-})
-const root = ReactDOM.createRoot(
-  document.getElementById('main')
-);
-
-root.render(
-  <>
-  <Feed see={handleSeeMore} props={Img}/>
-  </>
-);
-  }
   React.useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
@@ -256,25 +222,11 @@ async function handleO(user){
 
 
 }
-function hand(){
- 
-  console.log(load)
-}
-async function handleSignIn(user){
 
-  const root = ReactDOM.createRoot(
-    document.getElementById('mess')
-  );
-  
-  root.render(
-    <>
-    <Load/>
-    </>
-  );
-  console.log("hhh")
-  setLoad("1")
-  console.log(load)
-  console.log("raman")
+async function handleSignIn(user) {
+    const root = ReactDOM.createRoot(document.getElementById('mess'));
+    root.render(<Load />);
+    setLoad("1");
 
   const k={
       "token":user.token,
@@ -316,14 +268,9 @@ async function handleSignIn(user){
       </>
     );
    }
-
-   console.log(load)
-
-  
-  
 }
-function handleSeeMore(event){
-   console.log("djdhh")
+
+function handleSeeMore(event) {
     const root = ReactDOM.createRoot(
       document.getElementById('main')
     );
